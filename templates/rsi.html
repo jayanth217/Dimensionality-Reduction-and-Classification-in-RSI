@@ -1,0 +1,128 @@
+python app4.py<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RSI</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('/static/leaf.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            color: #000; /* Change text color to black */
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="file"],
+        select,
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.2);
+            color: #000; /* Change text color to black */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #000; /* Change text color to black */
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .result {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.2);
+            color: #000; /* Change text color to black */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 42px; /* Set the height to match input elements */
+        }
+
+        h4 {
+            text-align: left;
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dimensionality Reduction and Classification of RSI</h2>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Attach a file:</label>
+                <input type="file" name="file" accept=".csv">
+            </div>
+            <div class="form-group">
+                <label for="components">Number of components:</label>
+                <input type="number" name="components" id="components" value="1">
+            </div>
+            <div class="form-group">
+                <label for="neighbors">Number of nearest neighbours:</label>
+                <input type="number" name="neighbors" id="neighbors" value="5">
+            </div>
+            <button type="submit" value="Upload">Calculate Accuracy</button>
+        </form>
+        <div class="form-group">
+            <h4>Result:</h4>
+            <div class="result">
+                <p id="res">Calculated Accuracy: {{ row }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
